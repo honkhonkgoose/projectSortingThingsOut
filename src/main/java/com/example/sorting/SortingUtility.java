@@ -1,5 +1,9 @@
 package com.example.sorting;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class SortingUtility {
 
     /**
@@ -24,6 +28,16 @@ public class SortingUtility {
      */
     public static <T extends Comparable<T>> void gnomeSort(T[] data) {
 
+        int pos = 0;
+        while(pos < data.length) {
+            if (pos == 0 || data[pos].compareTo(data[pos - 1]) >= 0)
+                pos++;
+            else {
+                swap(data, pos, pos - 1);
+                pos--;
+            }
+        }
+
         // TODO implement pseudocode above
 
     }
@@ -46,6 +60,9 @@ public class SortingUtility {
     public static <T extends Comparable<T>> void gnomierSort(T[] data) {
 
         // TODO implement pseudocode above
+        for (int pos =0; pos < data.length; pos++) {
+            gnomierSort(data, pos);
+        }
 
     }
 
@@ -68,6 +85,11 @@ public class SortingUtility {
     private static <T extends Comparable<T>> void gnomierSort(T[] data, int upperBound) {
 
         // TODO implement pseudocode above
+        while(upperBound > 0 && data[upperBound - 1].compareTo(data[upperBound]) == 1)
+        {
+            swap(data, upperBound - 1, upperBound);
+            upperBound--;
+        }
     }
 
     private static <T extends Comparable<T>> void swap(T[] data, int index1, int index2) {
